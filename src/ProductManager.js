@@ -80,8 +80,7 @@ class ProductManager {
         // busco el producto a modificar
         const updatedProduct = oProducts.find(product => product.id === productID);
 
-        //updatedProduct = [id, ...newProduct]; // newProduct is not iterable
-        //updatedProduct = [id, ...newProduct]
+        updatedProduct = [id, ...newProduct]; 
 
         // Elimino el producto que coincide con el ID, creo un nuevo array que no lo incluya
         const newProducts = oProducts.filter(product => product.id !== productID);
@@ -114,7 +113,8 @@ class ProductManager {
     }
 
     // debe devolver el arreglo con todos los productos creados hasta ese momento
-    async getProducts() {
+    // Agrego un limite para devolver solo la cantidad indicada
+    async getProducts(limit) {
         let productsInFile;
 
         try {
@@ -125,10 +125,13 @@ class ProductManager {
             return id;
         }
         // convierto lo leído en el archivo en objetos y devuelvo
-        //console.log(productsInFile);
-        //console.log(JSON.parse(productsInFile));
-        return JSON.parse(productsInFile);;
+        let oProducts = JSON.parse(productsInFile);
 
+        if (limit) {
+            return oProducts.slice(0, limit);
+        } else {
+            return oProducts;
+        }
     }
 
     /*
@@ -153,104 +156,8 @@ class ProductManager {
 
 }
 
-// 0. Creo el producto de testing
-const oTestProduct = new Product({
-    title: 'producto prueba',
-    description: 'Este es un producto prueba',
-    price: 200,
-    thumbnail: 'Sin imagen',
-    code: 'abc123',
-    stock: 25
-});
-
-console.clear();
-
 const sPath = './products.json';
 
 const oProductManager = new ProductManager(sPath);
-console.log("1. Se creará una instancia de la clase 'ProductManager'");
-console.log(oProductManager);
 
-//console.log("2. Se llamará 'getProducts' recién creada la instancia, debe devolver un arreglo vacío []");
-//console.log(oProductManager.getProducts());
-
-console.log("3. Se llamará al método 'addProduct' con los campos de testing.");
-
-let oNewProductID = oProductManager.addProduct(oTestProduct);
-
-if (oNewProductID) {
-    console.log(`Producto agregado. ID: ${oNewProductID}`);
-} else {
-    console.log(`Ya existe un producto con el código: "${oTestProduct.code}"`);
-}
-
-//console.log("5. Se llamará el método 'getProducts' nuevamente, esta vez debe aparecer el producto recién agregado.");
-//console.log(oProductManager.getProducts());
-
-/*
-console.log("6. Se llamará al método 'addProduct' con los mismos campos de arriba, debe arrojar un error porque el código estará repetido.");
-let oNewProductID2 = oProductManager.addProduct(oTestProduct);
-
-if (oNewProductID2) {
-    console.log(`Producto agregado. ID: ${oNewProductID2}`);
-} else {
-    console.log(`Ya existe un producto con el código: "${oTestProduct.code}"`);
-}
-*/
-console.log("7. Se evaluará que 'getProductById' devuelva error si no encuentra el producto o el producto en caso de encontrarlo.");
-const oProductToFind = oProductManager.getProductById(oNewProductID);
-if (oProductToFind) {
-    console.log(oProductToFind);
-} else {
-    console.log(`ID: ${oNewProductID} Not found.`);
-}
-/*
-let nonExistentID = 2;
-// 7. Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
-const oProductToFind2 = oProductManager.getProductById(nonExistentID);
-if (oProductToFind2) {
-    console.log(oProductToFind2);
-} else {
-    console.log(`ID: ${nonExistentID} Not found.`);
-}
-
-// 8. Agrego un nuevo producto para modificar y eliminar
-const oNewProduct = new Product({
-    title: 'producto nuevo',
-    description: 'Este es un producto nuevo',
-    price: 500,
-    thumbnail: 'Nueva imagen',
-    code: 'cod1',
-    stock: 75
-});
-
-console.log("// 8. Agrego un nuevo producto para modificar y eliminar");
-let oNewProductID3 = oProductManager.addProduct(oNewProduct);
-
-if (oNewProductID3) {
-    console.log(`Producto agregado. ID: ${oNewProductID3}`);
-} else {
-    console.log(`Ya existe un producto con el código: "${oNewProduct.code}"`);
-}
-
-console.log(oProductManager.getProducts());
-*/
-/*
-// 8. Modificar el producto con ID: oNewProductID3
-const oModProduct = new Product({
-    title: 'producto modificado',
-    description: 'Este es un producto modificado',
-    price: 250,
-    thumbnail: 'Con imagen',
-    code: 'zxy321',
-    stock: 45
-});
-
-oProductManager.updateProduct(oNewProductID3, oModProduct);
-console.log(oProductManager.getProducts());
-
-// 9. Eliminar el prodcuto con ID: oNewProductID3
-oProductManager.deleteProduct(oNewProductID3);
-console.log(oProductManager.getProducts());
-*/
 export default oProductManager;

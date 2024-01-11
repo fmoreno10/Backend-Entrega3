@@ -1,12 +1,21 @@
 [
   {
+    "title": "producto uno",
+    "description": "Este es un producto uno",
+    "price": 250,
+    "thumbnail": "Sin imagen",
+    "code": "abc123",
+    "stock": 25,
+    "id": 1
+  },
+  {
     "title": "producto prueba",
     "description": "Este es un producto prueba",
     "price": 200,
     "thumbnail": "Sin imagen",
     "code": "abc123",
     "stock": 25,
-    "id": 1
+    "id": 2
   },
   {
     "title": "producto nuevo",
@@ -16,5 +25,77 @@
     "code": "cod1",
     "stock": 75,
     "id": 3
+  },
+  {
+    "title": "producto prueba",
+    "description": "Este es un producto prueba",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "abc123",
+    "stock": 25,
+    "id": 4
+  },
+  {
+    "title": "producto nuevo",
+    "description": "Este es un producto nuevo",
+    "price": 500,
+    "thumbnail": "Nueva imagen",
+    "code": "cod1",
+    "stock": 75,
+    "id": 5
+  },
+  {
+    "title": "producto prueba",
+    "description": "Este es un producto prueba",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "abc123",
+    "stock": 25,
+    "id": 6
+  },
+  {
+    "title": "producto nuevo",
+    "description": "Este es un producto nuevo",
+    "price": 500,
+    "thumbnail": "Nueva imagen",
+    "code": "cod1",
+    "stock": 75,
+    "id": 7
+  },
+  {
+    "title": "producto prueba",
+    "description": "Este es un producto prueba",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "abc123",
+    "stock": 25,
+    "id": 8
+  },
+  {
+    "title": "producto nuevo",
+    "description": "Este es un producto nuevo",
+    "price": 500,
+    "thumbnail": "Nueva imagen",
+    "code": "cod1",
+    "stock": 75,
+    "id": 9
+  },
+  {
+    "title": "producto prueba",
+    "description": "Este es un producto prueba",
+    "price": 200,
+    "thumbnail": "Sin imagen",
+    "code": "abc123",
+    "stock": 25,
+    "id": 10
+  },
+  {
+    "title": "producto nuevo",
+    "description": "Este es un producto nuevo",
+    "price": 500,
+    "thumbnail": "Nueva imagen",
+    "code": "cod1",
+    "stock": 75,
+    "id": 11
   }
 ]
