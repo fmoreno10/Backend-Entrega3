@@ -1,23 +1,28 @@
-//const express = require ("express");
-//const oProductManager = require("./ProductManager");
 import express from 'express';
 import oProductManager from './ProductManager.js';
 
-const getAllProducts = async () => {
-    let oProducts = await oProductManager.getProducts();
-    console.log(oProducts);
-    return oProducts;
-}
-
 const app = express();
+
+app.use(express.urlencoded({ extended: true })) 
+app.use(express.json()) 
 
 app.get("/ping", (req, res) => {
     res.send("pong");
 });
 
-app.get("/products", (req, res) => {
-    console.log("Mostrando productos: ");
-    res.send(getAllProducts());
+app.get("/products", async (req, res) => {    
+    let oProducts = await oProductManager.getProducts();    
+    res.send(oProducts);
+});
+
+app.get("/products/:id", async (req, res) => {    
+    let id = req.params.id 
+    let oProduct = await oProductManager.getProductById(id);    
+    if( oProduct){
+        res.send(oProduct);
+    }else{
+        res.status(400).send(`No se encontro el producto con ID= ${id}`);
+    }    
 });
 
 app.listen(3000, () => {
