@@ -11,7 +11,7 @@ app.get("/ping", (req, res) => {
 });
 
 app.get("/products", async (req, res) => {
-    let limit = parseInt(req.limit);
+    let limit = parseInt(req.params.limit);
     let oProducts = await oProductManager.getProducts(limit);    
     res.send(oProducts);
 });
